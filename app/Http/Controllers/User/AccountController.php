@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\User\UserBaseController;
+use App\Http\Services\UserService;
 
 class AccountController extends UserBaseController
 {
@@ -12,8 +13,8 @@ class AccountController extends UserBaseController
      */
     public function getIndex()
     {
+        
         return view('user/account/index');
     }
-    
     
 }

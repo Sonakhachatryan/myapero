@@ -159,7 +159,8 @@ return [
         
         Collective\Html\HtmlServiceProvider::class,
         Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Skovmand\Mailchimp\MailchimpServiceProvider::class,
 
     ],
 
@@ -212,6 +213,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Paypalpayment'   => Anouar\Paypalpayment\Facades\PaypalPayment::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        
 
     ],
 

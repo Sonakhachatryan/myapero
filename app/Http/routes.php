@@ -1,5 +1,19 @@
 <?php
-
+Route::get('aaa',function(\Mailchimp $mailchimp){
+    try {
+            $mailchimp
+                ->lists
+                ->subscribe(
+                    111111111,
+                    ['email' => 'bastianjung8@gmail.com']
+                );
+        } catch (\Mailchimp_List_AlreadySubscribed $e) {
+            dd($e->getMessage());
+        }
+        catch (\Mailchimp_Error $e) {
+            dd($e->getMessage());
+        }
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,12 +24,25 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+// Templates
+Route::group(array('prefix'=>'/templates/'),function(){
+    Route::get('{template}', array( function($template)
+    {
+        $template = str_replace(".php","",$template);
+        view()->addExtension('html','php');
+        return view('templates.' . $template);
+    }));
+});
 
 /**
  * Main routes
  */
 Route::group([],function(){
-    Route::get('/','HomeController@getIndex');
+
+    Route::get('/',function(){
+        return view('index');
+    });
+
     Route::controller('home','HomeController');
     Route::controller('auth','Auth\AuthController');
     
@@ -28,7 +55,7 @@ Route::group([],function(){
 
   Route::group([
     'prefix'     => 'admin',
-    'middleware' => 'admin',   
+    'middleware' => 'admin',
     'namespace'  => 'Admin',
     
      ],function(){
@@ -124,6 +151,10 @@ Route::group([],function(){
     {
         return view('bestellen/index');
     });
+
+Route::get('test', function(){
+    return 'test';
+});
     
     
     
